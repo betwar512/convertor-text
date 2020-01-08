@@ -1,0 +1,52 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:4.0.1'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'idea'
+}
+apply plugin: 'com.github.johnrengelman.shadow'
+group 'net.contal'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
+
+
+
+dependencies {
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    implementation group: 'com.itextpdf', name: 'itext7-core', version: '7.1.9', ext: 'pom'
+    // https://mvnrepository.com/artifact/com.itextpdf/kernel
+    implementation group: 'com.itextpdf', name: 'kernel', version: '7.1.9'
+// https://mvnrepository.com/artifact/com.itextpdf/styled-xml-parser
+    implementation group: 'com.itextpdf', name: 'styled-xml-parser', version: '7.1.9'
+// https://mvnrepository.com/artifact/com.itextpdf/svg
+    implementation group: 'com.itextpdf', name: 'svg', version: '7.1.9'
+// https://mvnrepository.com/artifact/com.itextpdf/layout
+    implementation group: 'com.itextpdf', name: 'layout', version: '7.1.9'
+    // https://mvnrepository.com/artifact/com.itextpdf/forms
+    implementation group: 'com.itextpdf', name: 'forms', version: '7.1.9'
+
+//    implementation  fileTree(dir: '/opt/extra_libs/', include: '*.jar')
+    // https://mvnrepository.com/artifact/com.itextpdf/html2pdf
+    implementation group: 'com.itextpdf', name: 'html2pdf', version: '2.1.6'
+
+}
