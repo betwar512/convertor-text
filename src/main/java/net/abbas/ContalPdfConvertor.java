@@ -3,12 +3,16 @@ package net.abbas;
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
 import com.itextpdf.html2pdf.resolver.font.DefaultFontProvider;
+import com.itextpdf.io.font.FontProgram;
+import com.itextpdf.io.font.FontProgramFactory;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.font.FontProvider;
 
 import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 public class ContalPdfConvertor {
 
@@ -43,25 +47,32 @@ public class ContalPdfConvertor {
     }
 
 
-
-    public void addFont(String font){
-
-        if(font != null && !font.isEmpty()) {
-            if (dfp == null) {
-                this.dfp = new DefaultFontProvider(true, true, false);
+    /**
+     *
+     * @return
+     * @throws URISyntaxException
+     */
+    private FontProvider getFontProviders() throws URISyntaxException {
+        FontProvider fontProvider = new DefaultFontProvider(true, true, false);
+        URL folderUrl = ContalPdfConvertor.class.getResource("/fonts");
+        if (folderUrl != null) {
+            File folder = new File(folderUrl.toURI());
+            File[] files = folder.listFiles();
+            if (files != null)
+            for (File file : files) {
+                if(file.isDirectory())
+                      fontProvider.addDirectory(file.getAbsolutePath());
             }
-            dfp.addFont(font);
-            this.converterProperties.setFontProvider(dfp);
         }
+        return fontProvider;
     }
 
-
-
-
-    // style="page-break-after: always; width: 320pt;"
-
-
-    public void testcItextSevenConvertor() throws IOException {
+    /**
+     *
+     * @throws IOException
+     * @throws URISyntaxException
+     */
+    public void testcItextSevenConvertor() throws IOException, URISyntaxException {
         // pdfHTML specific code
         InputStream asInput = new ByteArrayInputStream(html.getBytes());
         PdfWriter pdfWriter = new PdfWriter(new FileOutputStream(this.outputFile));
@@ -73,6 +84,7 @@ public class ContalPdfConvertor {
             pdf.setDefaultPageSize(pageSize);
         }
 
+        this.converterProperties.setFontProvider(this.getFontProviders());
         HtmlConverter.convertToPdf(asInput, pdf, this.converterProperties);
     }
 

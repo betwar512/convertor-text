@@ -1,12 +1,23 @@
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
 
 import java.io.*;
 
 public class TextConvertor {
 
 
+    @Test
+    public void testcItextSevenConvertor() throws Exception{
+        File pdfDest = new File("/Users/betwar/Documents/itext_output.pdf");
+        // pdfHTML specific code
+        InputStream asInput = new ByteArrayInputStream(getHtml().getBytes());
+        ConverterProperties converterProperties = new ConverterProperties();
+        HtmlConverter.convertToPdf(asInput, new FileOutputStream(pdfDest), converterProperties);
+
+
+    }
 
 
     public String getHtml(){
@@ -453,23 +464,5 @@ public class TextConvertor {
 
     }
 
-
-
-
-
-
-
-    @Test
-    public void testcItextSevenConvertor() throws Exception{
-
-        File pdfDest = new File("/Users/betwar/Documents/itext_output.pdf");
-        // pdfHTML specific code
-        InputStream asInput = new ByteArrayInputStream(getHtml().getBytes());
-        ConverterProperties converterProperties = new ConverterProperties();
-
-        HtmlConverter.convertToPdf(asInput, new FileOutputStream(pdfDest), converterProperties);
-
-
-    }
 
 }

@@ -24,6 +24,19 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
+          <root url="jar:///Users/betwar/.gradle/caches/modules-2/files-2.1/com.itextpdf/html2pdf/2.1.6/31dc9d0c6dda06665f097d852080ac45bcf3f0d7/html2pdf-2.1.6.jar!/"/>
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar:///Users/betwar/.gradle/caches/modules-2/files-2.1/com.itextpdf/html2pdf/2.1.6/eb7d564f465f2fdf1a6b9d6ceff3b1b9c1dfb4b5/html2pdf-2.1.6-javadoc.jar!/"/>
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar:///Users/betwar/.gradle/caches/modules-2/files-2.1/com.itextpdf/html2pdf/2.1.6/643b0318e8bd2a86ade276e4b9d76feef2f18a4a/html2pdf-2.1.6-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
           <root url="jar:///Users/betwar/.gradle/caches/modules-2/files-2.1/com.itextpdf/svg/7.1.9/2b33ec9dc0a5edc66fcff78ce017879ba2742a23/svg-7.1.9.jar!/"/>
         </CLASSES>
         <JAVADOC>
@@ -110,24 +123,6 @@
         <SOURCES>
           <root url="jar:///Users/betwar/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.13/96e785df399a4e1a6c030877097807b7e18520cc/slf4j-api-1.7.13-sources.jar!/"/>
         </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar:///opt/extra_libs/html2pdf-2.1.6.jar!/"/>
-        </CLASSES>
-        <JAVADOC/>
-        <SOURCES/>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar:///opt/extra_libs/pdfconvertor-1.0.jar!/"/>
-        </CLASSES>
-        <JAVADOC/>
-        <SOURCES/>
       </library>
     </orderEntry>
     <orderEntry type="module-library" scope="TEST">
