@@ -9,10 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -34,10 +32,13 @@ public class ContalPdfConvertorTest {
     }
 
 
+
+
+
     @Test
     public void testFontProvider() throws URISyntaxException {
         ConverterProperties properties = new ConverterProperties();
-        URL folderUrl = ContalPdfConvertorTest.class.getResource("/fonts");
+        URL folderUrl = getClass().getClassLoader().getResource("fonts");
         assertNotNull(folderUrl);
         File folder = new File(folderUrl.toURI());
         assertNotNull(folder);

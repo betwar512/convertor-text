@@ -61,3 +61,67 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
 
 }
+
+
+/*---------- Setup Tags Here for Live ----------*/
+
+// get today
+static def getDate() {
+    new Date().format('yyyyMMdd')
+}
+// get last tag from master branch
+static String getLatestTag(){
+    return 'git describe --abbrev=0 origin/master'.execute().text
+}
+//Check if already in master branch
+static boolean isMasterBranch(){
+    String name =  'git rev-parse --abbrev-ref HEAD'.execute().text
+    return name.replace("\n", "") == "master"
+}
+
+// Get current tag number ? 0
+static int getTagNumber(){
+    String lastTag = getLatestTag()
+    int firstIndex = lastTag.indexOf("E")
+    int  lastIndex = lastTag.indexOf("-")
+    if(firstIndex > 0 && lastIndex > 0) {
+        String dateTag = lastTag.substring(firstIndex + 1, lastIndex)
+        String tagNumber =  getDate() == dateTag ? lastTag.substring(lastIndex+1) : "0"
+        return tagNumber.toInteger()
+    }
+    return 0
+}
+
+/**
+ * new tag with following pattern
+ * Pattern = LIVEYYYYMMDD-number
+ */
+static def createNewLiveTag(){
+    int tagNumber = getTagNumber() + 1
+    return "LIVE" + getDate() + "-" + tagNumber
+}
+
+
+task getTag {
+    doLast {
+        String tagName =  createNewLiveTag()
+        addTag(tagName)
+//        println("Excude for JSERV:")
+//        println("./test.sh -b jserv -t "+tagName+" -c -r -rm -lb 1")
+//        println("Excude for Accounts:")
+//        println("./test.sh -b accounts -t "+tagName+" -c -r -rm ")
+    }
+}
+
+
+static  addTag(String tagName){
+    if(!isMasterBranch()) {
+        throw new IllegalStateException("You should checkout master branch before calling this task.")
+    }
+
+    if(tagName.length() > 0 ){
+
+
+    }
+
+}
