@@ -120,8 +120,9 @@ static  addTag(String tagName){
     }
 
     if(tagName.length() > 0 ){
-
-
+        String message = "This tag generated at "+ new Date().toString() + " by name $tagName"
+        println(tagName)
+        "git tag $tagName -m $message ".execute()
     }
 
 }
